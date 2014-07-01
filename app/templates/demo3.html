@@ -1,0 +1,58 @@
+
+<section class="demoCtrl">
+	<!-- <h1>3D model controling interface demo</h1> -->
+
+	<div class="wrapper clearfix">
+		<aside>
+			<h4>properties panel</h4>
+			<label for="scale">Scale Object</label>{{config.scale}}
+			<input type="range" name="scale" min="0" max="100" step="1" class="add-bottom"
+			ng-model="config.scale" >				
+
+			<label for="materialsList">Material Type</label>
+			<select id="materialsList" ng-model="config.materialType">
+				<option value="lambert">Lambert</option>
+				<option value="phong">Phong</option>
+				<option value="wireframe">Wire Frame</option>
+			</select>
+
+			<label for="dofillcontainer">
+				<input type="checkbox" id="dofillcontainer" ng-model="config.dofillcontainer"/>
+				<span>Responsive Canvas</span>
+			</label>
+
+			<label for="canvasWidth">Canvas Width</label>{{config.canvasWidth}}
+			<input type="range" name="canvasWidth" min="100" max="600" step="10" class="add-bottom"
+			ng-disabled="config.dofillcontainer" 
+			ng-model="config.canvasWidth" >				
+
+			<label for="canvasHeight">Canvas Height</label>{{config.canvasHeight}}
+			<input type="range" name="canvasHeight" min="100" max="600" step="10" class="add-bottom"
+			ng-disabled="config.dofillcontainer" 
+			ng-model="config.canvasHeight" >
+
+		</aside>
+
+		<!-- TODO: move attrs into 'config' obj and only pass that -->
+		<div class="canvasContainer">
+			<div id="webglContainer" 
+			ng-webgl
+			config="config"
+			data-path-to-model="pathToModel"
+			data-ng-model="skinnedMesh"
+			width="config.canvasWidth"
+			height="config.canvasHeight"
+			fillcontainer="config.dofillcontainer"
+			scale="config.scale"
+			material-type="config.materialType"
+			></div>
+		</div>
+
+		<hr/>
+
+	 	<!-- <angular-dat-gui 
+	 		ng-model="guiProperties">
+	 	</angular-dat-gui> -->
+
+	 </div>
+	</section>
